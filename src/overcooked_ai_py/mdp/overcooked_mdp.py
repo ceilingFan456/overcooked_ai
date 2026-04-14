@@ -16,7 +16,7 @@ from overcooked_ai_py.utils import (
 
 
 class Recipe:
-    MAX_NUM_INGREDIENTS = 3
+    MAX_NUM_INGREDIENTS = 10
 
     TOMATO = "tomato"
     ONION = "onion"
@@ -227,7 +227,7 @@ class Recipe:
         cls._conf = conf
         cls._configured = True
         cls._computed = False
-        cls.MAX_NUM_INGREDIENTS = conf.get("max_num_ingredients", 3)
+        cls.MAX_NUM_INGREDIENTS = conf.get("max_num_ingredients", 10)
 
         cls._cook_time = None
         cls._delivery_reward = None
@@ -1882,11 +1882,11 @@ class OvercookedGridworld(object):
         state.timestep += 1
         for obj in state.objects.values():
             if obj.name == "soup":
-                # automatically starts cooking when the pot has 3 ingredients
+                # automatically starts cooking when the pot is full
                 if self.old_dynamics and (
                     not obj.is_cooking
                     and not obj.is_ready
-                    and len(obj.ingredients) == 3
+                    and len(obj.ingredients) == Recipe.MAX_NUM_INGREDIENTS
                 ):
                     obj.begin_cooking()
                 if obj.is_cooking:
