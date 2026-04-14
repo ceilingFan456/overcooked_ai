@@ -1,0 +1,11 @@
+{
+    "grid":  """XXPXX
+                C  2X
+                X1  R
+                XDXSX""",
+    "start_bonus_orders": [],
+    "start_all_orders" : [
+        { "ingredients" : ["cucumber", "cucumber", "rice"]}
+    ],
+    "rew_shaping_params": None
+}

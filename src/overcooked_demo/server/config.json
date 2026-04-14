@@ -29,8 +29,12 @@
     "layout_globals" : {
         "onion_value" : 21,
         "tomato_value" : 13,
+        "cucumber_value" : 17,
+        "rice_value" : 15,
         "onion_time" : 15,
         "tomato_time" : 7,
+        "cucumber_time" : 10,
+        "rice_time" : 12,
         "order_bonus" : 2,
         "max_num_ingredients" : 3
     }

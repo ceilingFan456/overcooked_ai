@@ -20,10 +20,12 @@ class Recipe:
 
     TOMATO = "tomato"
     ONION = "onion"
-    ALL_INGREDIENTS = [ONION, TOMATO]
+    CUCUMBER = "cucumber"
+    RICE = "rice"
+    ALL_INGREDIENTS = [ONION, TOMATO, CUCUMBER, RICE]
 
     ALL_RECIPES_CACHE = {}
-    STR_REP = {"tomato": "†", "onion": "ø"}
+    STR_REP = {"tomato": "†", "onion": "ø", "cucumber": "¢", "rice": "®"}
 
     _computed = False
     _configured = False
@@ -69,16 +71,14 @@ class Recipe:
         return (self._ingredients,)
 
     def __int__(self):
-        num_tomatoes = len([_ for _ in self.ingredients if _ == Recipe.TOMATO])
-        num_onions = len([_ for _ in self.ingredients if _ == Recipe.ONION])
-
-        mixed_mask = int(bool(num_tomatoes * num_onions))
-        mixed_shift = (Recipe.MAX_NUM_INGREDIENTS + 1) ** len(
-            Recipe.ALL_INGREDIENTS
-        )
-        encoding = num_onions + (Recipe.MAX_NUM_INGREDIENTS + 1) * num_tomatoes
-
-        return mixed_mask * encoding * mixed_shift + encoding
+        counts = {ingredient: 0 for ingredient in Recipe.ALL_INGREDIENTS}
+        for ing in self.ingredients:
+            counts[ing] += 1
+        base = Recipe.MAX_NUM_INGREDIENTS + 1
+        encoding = 0
+        for i, ingredient in enumerate(sorted(Recipe.ALL_INGREDIENTS)):
+            encoding += counts[ingredient] * (base ** i)
+        return encoding
 
     def __hash__(self):
         return hash(self.ingredients)
@@ -140,23 +140,14 @@ class Recipe:
         if self._value_mapping and self in self._value_mapping:
             return self._value_mapping[self]
         if self._onion_value and self._tomato_value:
-            num_onions = len(
-                [
-                    ingredient
-                    for ingredient in self.ingredients
-                    if ingredient == self.ONION
-                ]
-            )
-            num_tomatoes = len(
-                [
-                    ingredient
-                    for ingredient in self.ingredients
-                    if ingredient == self.TOMATO
-                ]
-            )
-            return (
-                self._tomato_value * num_tomatoes
-                + self._onion_value * num_onions
+            ingredient_values = {
+                self.ONION: self._onion_value,
+                self.TOMATO: self._tomato_value,
+                self.CUCUMBER: self._cucumber_value or 0,
+                self.RICE: self._rice_value or 0,
+            }
+            return sum(
+                ingredient_values.get(ing, 0) for ing in self.ingredients
             )
         return 20
 
@@ -167,23 +158,14 @@ class Recipe:
         if self._time_mapping and self in self._time_mapping:
             return self._time_mapping[self]
         if self._onion_time and self._tomato_time:
-            num_onions = len(
-                [
-                    ingredient
-                    for ingredient in self.ingredients
-                    if ingredient == self.ONION
-                ]
-            )
-            num_tomatoes = len(
-                [
-                    ingredient
-                    for ingredient in self.ingredients
-                    if ingredient == self.TOMATO
-                ]
-            )
-            return (
-                self._onion_time * num_onions
-                + self._tomato_time * num_tomatoes
+            ingredient_times = {
+                self.ONION: self._onion_time,
+                self.TOMATO: self._tomato_time,
+                self.CUCUMBER: self._cucumber_time or 0,
+                self.RICE: self._rice_time or 0,
+            }
+            return sum(
+                ingredient_times.get(ing, 0) for ing in self.ingredients
             )
         return 20
 
@@ -232,6 +214,10 @@ class Recipe:
         cls._onion_time = None
         cls._tomato_value = None
         cls._tomato_time = None
+        cls._cucumber_value = None
+        cls._cucumber_time = None
+        cls._rice_value = None
+        cls._rice_time = None
 
         ## Basic checks for validity ##
 
@@ -335,6 +321,18 @@ class Recipe:
         if "onion_value" in conf:
             cls._onion_value = conf["onion_value"]
 
+        if "cucumber_time" in conf:
+            cls._cucumber_time = conf["cucumber_time"]
+
+        if "cucumber_value" in conf:
+            cls._cucumber_value = conf["cucumber_value"]
+
+        if "rice_time" in conf:
+            cls._rice_time = conf["rice_time"]
+
+        if "rice_value" in conf:
+            cls._rice_value = conf["rice_value"]
+
     @classmethod
     def generate_random_recipes(
         cls,
@@ -403,7 +401,7 @@ class ObjectState(object):
         self._position = new_pos
 
     def is_valid(self):
-        return self.name in ["onion", "tomato", "dish"]
+        return self.name in ["onion", "tomato", "cucumber", "rice", "dish"]
 
     def deepcopy(self):
         return ObjectState(self.name, self.position)
@@ -1037,6 +1035,18 @@ EVENT_TYPES = [
     "onion_drop",
     "useful_onion_drop",
     "potting_onion",
+    # Cucumber events
+    "cucumber_pickup",
+    "useful_cucumber_pickup",
+    "cucumber_drop",
+    "useful_cucumber_drop",
+    "potting_cucumber",
+    # Rice events
+    "rice_pickup",
+    "useful_rice_pickup",
+    "rice_drop",
+    "useful_rice_drop",
+    "potting_rice",
     # Dish events
     "dish_pickup",
     "useful_dish_pickup",
@@ -1049,12 +1059,20 @@ EVENT_TYPES = [
     # Potting events
     "optimal_onion_potting",
     "optimal_tomato_potting",
+    "optimal_cucumber_potting",
+    "optimal_rice_potting",
     "viable_onion_potting",
     "viable_tomato_potting",
+    "viable_cucumber_potting",
+    "viable_rice_potting",
     "catastrophic_onion_potting",
     "catastrophic_tomato_potting",
+    "catastrophic_cucumber_potting",
+    "catastrophic_rice_potting",
     "useless_onion_potting",
     "useless_tomato_potting",
+    "useless_cucumber_potting",
+    "useless_rice_potting",
 ]
 
 POTENTIAL_CONSTANTS = {
@@ -1063,6 +1081,8 @@ POTENTIAL_CONSTANTS = {
         "max_pickup_steps": 10,
         "pot_onion_steps": 10,
         "pot_tomato_steps": 10,
+        "pot_cucumber_steps": 10,
+        "pot_rice_steps": 10,
     },
     "mdp_test_tomato": {
         "max_delivery_steps": 4,
@@ -1494,8 +1514,28 @@ class OvercookedGridworld(object):
                 player.set_object(obj)
 
             elif terrain_type == "T" and player.held_object is None:
+                self.log_object_pickup(
+                    events_infos, new_state, "tomato", pot_states, player_idx
+                )
+
                 # Tomato pickup from dispenser
                 player.set_object(ObjectState("tomato", pos))
+
+            elif terrain_type == "C" and player.held_object is None:
+                self.log_object_pickup(
+                    events_infos, new_state, "cucumber", pot_states, player_idx
+                )
+
+                # Cucumber pickup from dispenser
+                player.set_object(ObjectState("cucumber", pos))
+
+            elif terrain_type == "R" and player.held_object is None:
+                self.log_object_pickup(
+                    events_infos, new_state, "rice", pot_states, player_idx
+                )
+
+                # Rice pickup from dispenser
+                player.set_object(ObjectState("rice", pos))
 
             elif terrain_type == "D" and player.held_object is None:
                 self.log_object_pickup(
@@ -1566,6 +1606,12 @@ class OvercookedGridworld(object):
                         )
                         if obj.name == Recipe.ONION:
                             events_infos["potting_onion"][player_idx] = True
+                        elif obj.name == Recipe.TOMATO:
+                            events_infos["potting_tomato"][player_idx] = True
+                        elif obj.name == Recipe.CUCUMBER:
+                            events_infos["potting_cucumber"][player_idx] = True
+                        elif obj.name == Recipe.RICE:
+                            events_infos["potting_rice"][player_idx] = True
 
             elif terrain_type == "S" and player.has_object():
                 obj = player.get_object()
@@ -1792,6 +1838,12 @@ class OvercookedGridworld(object):
 
     def get_tomato_dispenser_locations(self):
         return list(self.terrain_pos_dict["T"])
+
+    def get_cucumber_dispenser_locations(self):
+        return list(self.terrain_pos_dict.get("C", []))
+
+    def get_rice_dispenser_locations(self):
+        return list(self.terrain_pos_dict.get("R", []))
 
     def get_serving_locations(self):
         return list(self.terrain_pos_dict["S"])
@@ -2078,7 +2130,7 @@ class OvercookedGridworld(object):
 
         # Borders must not be free spaces
         def is_not_free(c):
-            return c in "XOPDST"
+            return c in "XOPDSTCR"
 
         for y in range(height):
             assert is_not_free(grid[y][0]), "Left border must not be free"
@@ -2098,7 +2150,7 @@ class OvercookedGridworld(object):
         ), "Some players were missing"
 
         assert all(
-            c in "XOPDST123456789 " for c in all_elements
+            c in "XOPDSTCR123456789 " for c in all_elements
         ), "Invalid character in grid"
         assert all_elements.count("1") == 1, "'1' must be present exactly once"
         assert (
@@ -2112,7 +2164,8 @@ class OvercookedGridworld(object):
         ), "'P' must be present at least once"
         assert (
             all_elements.count("O") >= 1 or all_elements.count("T") >= 1
-        ), "'O' or 'T' must be present at least once"
+            or all_elements.count("C") >= 1 or all_elements.count("R") >= 1
+        ), "'O', 'T', 'C', or 'R' must be present at least once"
 
     ################################
     # EVENT LOGGING HELPER METHODS #
@@ -2151,6 +2204,8 @@ class OvercookedGridworld(object):
         USEFUL_PICKUP_FNS = {
             "tomato": self.is_ingredient_pickup_useful,
             "onion": self.is_ingredient_pickup_useful,
+            "cucumber": self.is_ingredient_pickup_useful,
+            "rice": self.is_ingredient_pickup_useful,
             "dish": self.is_dish_pickup_useful,
         }
         if obj_name in USEFUL_PICKUP_FNS:
@@ -2170,6 +2225,8 @@ class OvercookedGridworld(object):
         USEFUL_DROP_FNS = {
             "tomato": self.is_ingredient_drop_useful,
             "onion": self.is_ingredient_drop_useful,
+            "cucumber": self.is_ingredient_drop_useful,
+            "rice": self.is_ingredient_drop_useful,
             "dish": self.is_dish_drop_useful,
         }
         if obj_name in USEFUL_DROP_FNS:
@@ -2377,10 +2434,10 @@ class OvercookedGridworld(object):
             "Using the `lossless_state_encoding_shape` property is deprecated. Please use `get_lossless_state_encoding_shape` method instead",
             DeprecationWarning,
         )
-        return np.array(list(self.shape) + [26])
+        return np.array(list(self.shape) + [34])
 
     def get_lossless_state_encoding_shape(self):
-        return np.array(list(self.shape) + [26])
+        return np.array(list(self.shape) + [34])
 
     def lossless_state_encoding(
         self, overcooked_state, horizon=400, debug=False
@@ -2395,19 +2452,27 @@ class OvercookedGridworld(object):
             "counter_loc",
             "onion_disp_loc",
             "tomato_disp_loc",
+            "cucumber_disp_loc",
+            "rice_disp_loc",
             "dish_disp_loc",
             "serve_loc",
         ]
         variable_map_features = [
             "onions_in_pot",
             "tomatoes_in_pot",
+            "cucumbers_in_pot",
+            "rice_in_pot",
             "onions_in_soup",
             "tomatoes_in_soup",
+            "cucumbers_in_soup",
+            "rice_in_soup",
             "soup_cook_time_remaining",
             "soup_done",
             "dishes",
             "onions",
             "tomatoes",
+            "cucumbers",
+            "rice",
         ]
         urgency_features = ["urgency"]
         all_objects = overcooked_state.all_objects_list
@@ -2458,6 +2523,12 @@ class OvercookedGridworld(object):
             for loc in self.get_tomato_dispenser_locations():
                 state_mask_dict["tomato_disp_loc"][loc] = 1
 
+            for loc in self.get_cucumber_dispenser_locations():
+                state_mask_dict["cucumber_disp_loc"][loc] = 1
+
+            for loc in self.get_rice_dispenser_locations():
+                state_mask_dict["rice_disp_loc"][loc] = 1
+
             for loc in self.get_dish_dispenser_locations():
                 state_mask_dict["dish_disp_loc"][loc] = 1
 
@@ -2495,12 +2566,24 @@ class OvercookedGridworld(object):
                             state_mask_dict["tomatoes_in_pot"] += make_layer(
                                 obj.position, ingredients_dict["tomato"]
                             )
+                            state_mask_dict["cucumbers_in_pot"] += make_layer(
+                                obj.position, ingredients_dict["cucumber"]
+                            )
+                            state_mask_dict["rice_in_pot"] += make_layer(
+                                obj.position, ingredients_dict["rice"]
+                            )
                         else:
                             state_mask_dict["onions_in_soup"] += make_layer(
                                 obj.position, ingredients_dict["onion"]
                             )
                             state_mask_dict["tomatoes_in_soup"] += make_layer(
                                 obj.position, ingredients_dict["tomato"]
+                            )
+                            state_mask_dict["cucumbers_in_soup"] += make_layer(
+                                obj.position, ingredients_dict["cucumber"]
+                            )
+                            state_mask_dict["rice_in_soup"] += make_layer(
+                                obj.position, ingredients_dict["rice"]
                             )
                             state_mask_dict[
                                 "soup_cook_time_remaining"
@@ -2520,6 +2603,12 @@ class OvercookedGridworld(object):
                         state_mask_dict["tomatoes_in_soup"] += make_layer(
                             obj.position, ingredients_dict["tomato"]
                         )
+                        state_mask_dict["cucumbers_in_soup"] += make_layer(
+                            obj.position, ingredients_dict["cucumber"]
+                        )
+                        state_mask_dict["rice_in_soup"] += make_layer(
+                            obj.position, ingredients_dict["rice"]
+                        )
                         state_mask_dict["soup_done"] += make_layer(
                             obj.position, 1
                         )
@@ -2530,6 +2619,10 @@ class OvercookedGridworld(object):
                     state_mask_dict["onions"] += make_layer(obj.position, 1)
                 elif obj.name == "tomato":
                     state_mask_dict["tomatoes"] += make_layer(obj.position, 1)
+                elif obj.name == "cucumber":
+                    state_mask_dict["cucumbers"] += make_layer(obj.position, 1)
+                elif obj.name == "rice":
+                    state_mask_dict["rice"] += make_layer(obj.position, 1)
                 else:
                     raise ValueError("Unrecognized object")
 
@@ -2641,17 +2734,21 @@ class OvercookedGridworld(object):
                 feat_dict["p{}_closest_{}".format(idx, name)] = deltas
 
             if name == "soup":
-                num_onions = num_tomatoes = 0
+                num_onions = num_tomatoes = num_cucumbers = num_rice = 0
                 if obj:
                     ingredients_cnt = Counter(obj.ingredients)
                     num_onions, num_tomatoes = (
                         ingredients_cnt["onion"],
                         ingredients_cnt["tomato"],
                     )
+                    num_cucumbers = ingredients_cnt["cucumber"]
+                    num_rice = ingredients_cnt["rice"]
                 feat_dict["p{}_closest_soup_n_onions".format(i)] = [num_onions]
                 feat_dict["p{}_closest_soup_n_tomatoes".format(i)] = [
                     num_tomatoes
                 ]
+                feat_dict["p{}_closest_soup_n_cucumbers".format(i)] = [num_cucumbers]
+                feat_dict["p{}_closest_soup_n_rice".format(i)] = [num_rice]
 
             return feat_dict
 
@@ -2684,6 +2781,12 @@ class OvercookedGridworld(object):
                     "p{}_closest_pot_{}_num_tomatoes".format(idx, pot_idx)
                 ] = [0]
                 feat_dict[
+                    "p{}_closest_pot_{}_num_cucumbers".format(idx, pot_idx)
+                ] = [0]
+                feat_dict[
+                    "p{}_closest_pot_{}_num_rice".format(idx, pot_idx)
+                ] = [0]
+                feat_dict[
                     "p{}_closest_pot_{}_cook_time".format(idx, pot_idx)
                 ] = [0]
                 feat_dict["p{}_closest_pot_{}".format(idx, pot_idx)] = (0, 0)
@@ -2699,7 +2802,7 @@ class OvercookedGridworld(object):
             is_ready = int(pot_loc in self.get_ready_pots(pot_states))
 
             # Get soup state info
-            num_onions = num_tomatoes = 0
+            num_onions = num_tomatoes = num_cucumbers = num_rice = 0
             cook_time_remaining = 0
             if not is_empty:
                 soup = overcooked_state.get_object(pot_loc)
@@ -2708,6 +2811,8 @@ class OvercookedGridworld(object):
                     ingredients_cnt["onion"],
                     ingredients_cnt["tomato"],
                 )
+                num_cucumbers = ingredients_cnt["cucumber"]
+                num_rice = ingredients_cnt["rice"]
                 cook_time_remaining = (
                     0 if soup.is_idle else soup.cook_time_remaining
                 )
@@ -2732,6 +2837,12 @@ class OvercookedGridworld(object):
             feat_dict[
                 "p{}_closest_pot_{}_num_tomatoes".format(idx, pot_idx)
             ] = [num_tomatoes]
+            feat_dict[
+                "p{}_closest_pot_{}_num_cucumbers".format(idx, pot_idx)
+            ] = [num_cucumbers]
+            feat_dict[
+                "p{}_closest_pot_{}_num_rice".format(idx, pot_idx)
+            ] = [num_rice]
             feat_dict["p{}_closest_pot_{}_cook_time".format(idx, pot_idx)] = [
                 cook_time_remaining
             ]
@@ -2739,7 +2850,7 @@ class OvercookedGridworld(object):
 
             return feat_dict
 
-        IDX_TO_OBJ = ["onion", "soup", "dish", "tomato"]
+        IDX_TO_OBJ = ["onion", "soup", "dish", "tomato", "cucumber", "rice"]
         OBJ_TO_IDX = {o_name: idx for idx, o_name in enumerate(IDX_TO_OBJ)}
 
         counter_objects = self.get_counter_objects_dict(overcooked_state)
@@ -2782,6 +2893,26 @@ class OvercookedGridworld(object):
                     "tomato",
                     self.get_tomato_dispenser_locations()
                     + counter_objects["tomato"],
+                ),
+            )
+            all_features = concat_dicts(
+                all_features,
+                make_closest_feature(
+                    i,
+                    player,
+                    "cucumber",
+                    self.get_cucumber_dispenser_locations()
+                    + counter_objects.get("cucumber", []),
+                ),
+            )
+            all_features = concat_dicts(
+                all_features,
+                make_closest_feature(
+                    i,
+                    player,
+                    "rice",
+                    self.get_rice_dispenser_locations()
+                    + counter_objects.get("rice", []),
                 ),
             )
             all_features = concat_dicts(

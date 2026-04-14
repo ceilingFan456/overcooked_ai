@@ -7,10 +7,12 @@ import pygame
 from overcooked_ai_py.mdp.actions import Action, Direction
 from overcooked_ai_py.mdp.layout_generator import (
     COUNTER,
+    CUCUMBER_DISPENSER,
     DISH_DISPENSER,
     EMPTY,
     ONION_DISPENSER,
     POT,
+    RICE_DISPENSER,
     SERVING_LOC,
     TOMATO_DISPENSER,
 )
@@ -94,6 +96,8 @@ class StateVisualizer:
         COUNTER: "counter",
         ONION_DISPENSER: "onions",
         TOMATO_DISPENSER: "tomatoes",
+        CUCUMBER_DISPENSER: "cucumbers",
+        RICE_DISPENSER: "rice",
         POT: "pot",
         DISH_DISPENSER: "dishes",
         SERVING_LOC: "serve",
@@ -387,7 +391,11 @@ class StateVisualizer:
                 held_object_name = ""
             else:
                 if held_obj.name == "soup":
-                    if "onion" in held_obj.ingredients:
+                    if "cucumber" in held_obj.ingredients:
+                        held_object_name = "soup-cucumber"
+                    elif "rice" in held_obj.ingredients:
+                        held_object_name = "soup-rice"
+                    elif "onion" in held_obj.ingredients:
                         held_object_name = "soup-onion"
                     else:
                         held_object_name = "soup-tomato"
@@ -409,10 +417,21 @@ class StateVisualizer:
     def _soup_frame_name(ingredients_names, status):
         num_onions = ingredients_names.count("onion")
         num_tomatoes = ingredients_names.count("tomato")
-        return "soup_%s_tomato_%i_onion_%i" % (
+        num_cucumbers = ingredients_names.count("cucumber")
+        num_rice = ingredients_names.count("rice")
+        if num_cucumbers == 0 and num_rice == 0:
+            # Use original naming for backward compatibility
+            return "soup_%s_tomato_%i_onion_%i" % (
+                status,
+                num_tomatoes,
+                num_onions,
+            )
+        return "soup_%s_tomato_%i_onion_%i_cucumber_%i_rice_%i" % (
             status,
             num_tomatoes,
             num_onions,
+            num_cucumbers,
+            num_rice,
         )
 
     def _render_objects(self, surface, objects, grid):
