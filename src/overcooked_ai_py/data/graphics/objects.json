@@ -339,6 +339,126 @@
                 "w": 15,
                 "h": 15
             }
+        },
+        "olive.png": {
+            "frame": {
+                "x": 290,
+                "y": 1,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "feta_cheese.png": {
+            "frame": {
+                "x": 307,
+                "y": 1,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "hamburger_bun.png": {
+            "frame": {
+                "x": 324,
+                "y": 1,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "soy_sauce.png": {
+            "frame": {
+                "x": 341,
+                "y": 1,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "frozen_peas.png": {
+            "frame": {
+                "x": 358,
+                "y": 1,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "frozen_carrots.png": {
+            "frame": {
+                "x": 375,
+                "y": 1,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
         }
     },
     "meta": {
@@ -347,7 +467,7 @@
         "image": "spritesheet.png",
         "format": "RGBA8888",
         "size": {
-            "w": 289,
+            "w": 391,
             "h": 17
         },
         "scale": "1"

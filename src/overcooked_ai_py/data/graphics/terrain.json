@@ -179,6 +179,126 @@
                 "w": 15,
                 "h": 15
             }
+        },
+        "olives.png": {
+            "frame": {
+                "x": 154,
+                "y": 1,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "feta_cheese.png": {
+            "frame": {
+                "x": 171,
+                "y": 1,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "hamburger_buns.png": {
+            "frame": {
+                "x": 188,
+                "y": 1,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "soy_sauce.png": {
+            "frame": {
+                "x": 205,
+                "y": 1,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "fridge_peas.png": {
+            "frame": {
+                "x": 222,
+                "y": 1,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "fridge_carrots.png": {
+            "frame": {
+                "x": 239,
+                "y": 1,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
         }
     },
     "meta": {
@@ -187,7 +307,7 @@
         "image": "spritesheet.png",
         "format": "RGBA8888",
         "size": {
-            "w": 153,
+            "w": 255,
             "h": 17
         },
         "scale": "1"

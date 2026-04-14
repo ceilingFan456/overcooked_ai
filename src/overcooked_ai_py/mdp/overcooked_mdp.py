@@ -22,10 +22,21 @@ class Recipe:
     ONION = "onion"
     CUCUMBER = "cucumber"
     RICE = "rice"
-    ALL_INGREDIENTS = [ONION, TOMATO, CUCUMBER, RICE]
+    OLIVE = "olive"
+    FETA_CHEESE = "feta_cheese"
+    HAMBURGER_BUN = "hamburger_bun"
+    SOY_SAUCE = "soy_sauce"
+    FROZEN_PEAS = "frozen_peas"
+    FROZEN_CARROTS = "frozen_carrots"
+    ALL_INGREDIENTS = [ONION, TOMATO, CUCUMBER, RICE, OLIVE, FETA_CHEESE,
+                       HAMBURGER_BUN, SOY_SAUCE, FROZEN_PEAS, FROZEN_CARROTS]
 
     ALL_RECIPES_CACHE = {}
-    STR_REP = {"tomato": "†", "onion": "ø", "cucumber": "¢", "rice": "®"}
+    STR_REP = {
+        "tomato": "†", "onion": "ø", "cucumber": "¢", "rice": "®",
+        "olive": "◆", "feta_cheese": "▣", "hamburger_bun": "◎",
+        "soy_sauce": "▮", "frozen_peas": "⊕", "frozen_carrots": "⊗",
+    }
 
     _computed = False
     _configured = False
@@ -145,6 +156,12 @@ class Recipe:
                 self.TOMATO: self._tomato_value,
                 self.CUCUMBER: self._cucumber_value or 0,
                 self.RICE: self._rice_value or 0,
+                self.OLIVE: self._olive_value or 0,
+                self.FETA_CHEESE: self._feta_cheese_value or 0,
+                self.HAMBURGER_BUN: self._hamburger_bun_value or 0,
+                self.SOY_SAUCE: self._soy_sauce_value or 0,
+                self.FROZEN_PEAS: self._frozen_peas_value or 0,
+                self.FROZEN_CARROTS: self._frozen_carrots_value or 0,
             }
             return sum(
                 ingredient_values.get(ing, 0) for ing in self.ingredients
@@ -163,6 +180,12 @@ class Recipe:
                 self.TOMATO: self._tomato_time,
                 self.CUCUMBER: self._cucumber_time or 0,
                 self.RICE: self._rice_time or 0,
+                self.OLIVE: self._olive_time or 0,
+                self.FETA_CHEESE: self._feta_cheese_time or 0,
+                self.HAMBURGER_BUN: self._hamburger_bun_time or 0,
+                self.SOY_SAUCE: self._soy_sauce_time or 0,
+                self.FROZEN_PEAS: self._frozen_peas_time or 0,
+                self.FROZEN_CARROTS: self._frozen_carrots_time or 0,
             }
             return sum(
                 ingredient_times.get(ing, 0) for ing in self.ingredients
@@ -218,6 +241,18 @@ class Recipe:
         cls._cucumber_time = None
         cls._rice_value = None
         cls._rice_time = None
+        cls._olive_value = None
+        cls._olive_time = None
+        cls._feta_cheese_value = None
+        cls._feta_cheese_time = None
+        cls._hamburger_bun_value = None
+        cls._hamburger_bun_time = None
+        cls._soy_sauce_value = None
+        cls._soy_sauce_time = None
+        cls._frozen_peas_value = None
+        cls._frozen_peas_time = None
+        cls._frozen_carrots_value = None
+        cls._frozen_carrots_time = None
 
         ## Basic checks for validity ##
 
@@ -333,6 +368,14 @@ class Recipe:
         if "rice_value" in conf:
             cls._rice_value = conf["rice_value"]
 
+        # New ingredients
+        for ing in ["olive", "feta_cheese", "hamburger_bun", "soy_sauce",
+                     "frozen_peas", "frozen_carrots"]:
+            if f"{ing}_time" in conf:
+                setattr(cls, f"_{ing}_time", conf[f"{ing}_time"])
+            if f"{ing}_value" in conf:
+                setattr(cls, f"_{ing}_value", conf[f"{ing}_value"])
+
     @classmethod
     def generate_random_recipes(
         cls,
@@ -401,7 +444,7 @@ class ObjectState(object):
         self._position = new_pos
 
     def is_valid(self):
-        return self.name in ["onion", "tomato", "cucumber", "rice", "dish"]
+        return self.name in Recipe.ALL_INGREDIENTS + ["dish"]
 
     def deepcopy(self):
         return ObjectState(self.name, self.position)
@@ -1047,6 +1090,42 @@ EVENT_TYPES = [
     "rice_drop",
     "useful_rice_drop",
     "potting_rice",
+    # Olive events
+    "olive_pickup",
+    "useful_olive_pickup",
+    "olive_drop",
+    "useful_olive_drop",
+    "potting_olive",
+    # Feta cheese events
+    "feta_cheese_pickup",
+    "useful_feta_cheese_pickup",
+    "feta_cheese_drop",
+    "useful_feta_cheese_drop",
+    "potting_feta_cheese",
+    # Hamburger bun events
+    "hamburger_bun_pickup",
+    "useful_hamburger_bun_pickup",
+    "hamburger_bun_drop",
+    "useful_hamburger_bun_drop",
+    "potting_hamburger_bun",
+    # Soy sauce events
+    "soy_sauce_pickup",
+    "useful_soy_sauce_pickup",
+    "soy_sauce_drop",
+    "useful_soy_sauce_drop",
+    "potting_soy_sauce",
+    # Frozen peas events
+    "frozen_peas_pickup",
+    "useful_frozen_peas_pickup",
+    "frozen_peas_drop",
+    "useful_frozen_peas_drop",
+    "potting_frozen_peas",
+    # Frozen carrots events
+    "frozen_carrots_pickup",
+    "useful_frozen_carrots_pickup",
+    "frozen_carrots_drop",
+    "useful_frozen_carrots_drop",
+    "potting_frozen_carrots",
     # Dish events
     "dish_pickup",
     "useful_dish_pickup",
@@ -1061,18 +1140,42 @@ EVENT_TYPES = [
     "optimal_tomato_potting",
     "optimal_cucumber_potting",
     "optimal_rice_potting",
+    "optimal_olive_potting",
+    "optimal_feta_cheese_potting",
+    "optimal_hamburger_bun_potting",
+    "optimal_soy_sauce_potting",
+    "optimal_frozen_peas_potting",
+    "optimal_frozen_carrots_potting",
     "viable_onion_potting",
     "viable_tomato_potting",
     "viable_cucumber_potting",
     "viable_rice_potting",
+    "viable_olive_potting",
+    "viable_feta_cheese_potting",
+    "viable_hamburger_bun_potting",
+    "viable_soy_sauce_potting",
+    "viable_frozen_peas_potting",
+    "viable_frozen_carrots_potting",
     "catastrophic_onion_potting",
     "catastrophic_tomato_potting",
     "catastrophic_cucumber_potting",
     "catastrophic_rice_potting",
+    "catastrophic_olive_potting",
+    "catastrophic_feta_cheese_potting",
+    "catastrophic_hamburger_bun_potting",
+    "catastrophic_soy_sauce_potting",
+    "catastrophic_frozen_peas_potting",
+    "catastrophic_frozen_carrots_potting",
     "useless_onion_potting",
     "useless_tomato_potting",
     "useless_cucumber_potting",
     "useless_rice_potting",
+    "useless_olive_potting",
+    "useless_feta_cheese_potting",
+    "useless_hamburger_bun_potting",
+    "useless_soy_sauce_potting",
+    "useless_frozen_peas_potting",
+    "useless_frozen_carrots_potting",
 ]
 
 POTENTIAL_CONSTANTS = {
@@ -1537,6 +1640,42 @@ class OvercookedGridworld(object):
                 # Rice pickup from dispenser
                 player.set_object(ObjectState("rice", pos))
 
+            elif terrain_type == "V" and player.held_object is None:
+                self.log_object_pickup(
+                    events_infos, new_state, "olive", pot_states, player_idx
+                )
+                player.set_object(ObjectState("olive", pos))
+
+            elif terrain_type == "E" and player.held_object is None:
+                self.log_object_pickup(
+                    events_infos, new_state, "feta_cheese", pot_states, player_idx
+                )
+                player.set_object(ObjectState("feta_cheese", pos))
+
+            elif terrain_type == "B" and player.held_object is None:
+                self.log_object_pickup(
+                    events_infos, new_state, "hamburger_bun", pot_states, player_idx
+                )
+                player.set_object(ObjectState("hamburger_bun", pos))
+
+            elif terrain_type == "Y" and player.held_object is None:
+                self.log_object_pickup(
+                    events_infos, new_state, "soy_sauce", pot_states, player_idx
+                )
+                player.set_object(ObjectState("soy_sauce", pos))
+
+            elif terrain_type == "Z" and player.held_object is None:
+                self.log_object_pickup(
+                    events_infos, new_state, "frozen_peas", pot_states, player_idx
+                )
+                player.set_object(ObjectState("frozen_peas", pos))
+
+            elif terrain_type == "G" and player.held_object is None:
+                self.log_object_pickup(
+                    events_infos, new_state, "frozen_carrots", pot_states, player_idx
+                )
+                player.set_object(ObjectState("frozen_carrots", pos))
+
             elif terrain_type == "D" and player.held_object is None:
                 self.log_object_pickup(
                     events_infos, new_state, "dish", pot_states, player_idx
@@ -1612,6 +1751,11 @@ class OvercookedGridworld(object):
                             events_infos["potting_cucumber"][player_idx] = True
                         elif obj.name == Recipe.RICE:
                             events_infos["potting_rice"][player_idx] = True
+                        else:
+                            # Handle new ingredients generically
+                            potting_key = "potting_" + obj.name
+                            if potting_key in events_infos:
+                                events_infos[potting_key][player_idx] = True
 
             elif terrain_type == "S" and player.has_object():
                 obj = player.get_object()
@@ -1844,6 +1988,24 @@ class OvercookedGridworld(object):
 
     def get_rice_dispenser_locations(self):
         return list(self.terrain_pos_dict.get("R", []))
+
+    def get_olive_dispenser_locations(self):
+        return list(self.terrain_pos_dict.get("V", []))
+
+    def get_feta_cheese_dispenser_locations(self):
+        return list(self.terrain_pos_dict.get("E", []))
+
+    def get_bun_dispenser_locations(self):
+        return list(self.terrain_pos_dict.get("B", []))
+
+    def get_soy_sauce_dispenser_locations(self):
+        return list(self.terrain_pos_dict.get("Y", []))
+
+    def get_frozen_peas_dispenser_locations(self):
+        return list(self.terrain_pos_dict.get("Z", []))
+
+    def get_frozen_carrots_dispenser_locations(self):
+        return list(self.terrain_pos_dict.get("G", []))
 
     def get_serving_locations(self):
         return list(self.terrain_pos_dict["S"])
@@ -2130,7 +2292,7 @@ class OvercookedGridworld(object):
 
         # Borders must not be free spaces
         def is_not_free(c):
-            return c in "XOPDSTCR"
+            return c in "XOPDSTCRVEBYZG"
 
         for y in range(height):
             assert is_not_free(grid[y][0]), "Left border must not be free"
@@ -2150,7 +2312,7 @@ class OvercookedGridworld(object):
         ), "Some players were missing"
 
         assert all(
-            c in "XOPDSTCR123456789 " for c in all_elements
+            c in "XOPDSTCRVEBYZG123456789 " for c in all_elements
         ), "Invalid character in grid"
         assert all_elements.count("1") == 1, "'1' must be present exactly once"
         assert (
@@ -2165,7 +2327,10 @@ class OvercookedGridworld(object):
         assert (
             all_elements.count("O") >= 1 or all_elements.count("T") >= 1
             or all_elements.count("C") >= 1 or all_elements.count("R") >= 1
-        ), "'O', 'T', 'C', or 'R' must be present at least once"
+            or all_elements.count("V") >= 1 or all_elements.count("E") >= 1
+            or all_elements.count("B") >= 1 or all_elements.count("Y") >= 1
+            or all_elements.count("Z") >= 1 or all_elements.count("G") >= 1
+        ), "At least one ingredient dispenser must be present"
 
     ################################
     # EVENT LOGGING HELPER METHODS #
@@ -2206,6 +2371,12 @@ class OvercookedGridworld(object):
             "onion": self.is_ingredient_pickup_useful,
             "cucumber": self.is_ingredient_pickup_useful,
             "rice": self.is_ingredient_pickup_useful,
+            "olive": self.is_ingredient_pickup_useful,
+            "feta_cheese": self.is_ingredient_pickup_useful,
+            "hamburger_bun": self.is_ingredient_pickup_useful,
+            "soy_sauce": self.is_ingredient_pickup_useful,
+            "frozen_peas": self.is_ingredient_pickup_useful,
+            "frozen_carrots": self.is_ingredient_pickup_useful,
             "dish": self.is_dish_pickup_useful,
         }
         if obj_name in USEFUL_PICKUP_FNS:
@@ -2227,6 +2398,12 @@ class OvercookedGridworld(object):
             "onion": self.is_ingredient_drop_useful,
             "cucumber": self.is_ingredient_drop_useful,
             "rice": self.is_ingredient_drop_useful,
+            "olive": self.is_ingredient_drop_useful,
+            "feta_cheese": self.is_ingredient_drop_useful,
+            "hamburger_bun": self.is_ingredient_drop_useful,
+            "soy_sauce": self.is_ingredient_drop_useful,
+            "frozen_peas": self.is_ingredient_drop_useful,
+            "frozen_carrots": self.is_ingredient_drop_useful,
             "dish": self.is_dish_drop_useful,
         }
         if obj_name in USEFUL_DROP_FNS:

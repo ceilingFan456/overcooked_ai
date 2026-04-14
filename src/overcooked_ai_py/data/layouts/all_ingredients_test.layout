@@ -1,0 +1,12 @@
+{
+    "grid":  """XVXEXZXPX
+                X       X
+                X 1   2 X
+                X       X
+                XDXXXXXSX""",
+    "start_bonus_orders": [],
+    "start_all_orders" : [
+        { "ingredients" : ["olive", "feta_cheese", "frozen_peas"]}
+    ],
+    "rew_shaping_params": None
+}

@@ -1199,6 +1199,966 @@
                 "w": 15,
                 "h": 15
             }
+        },
+        "NORTH-olive.png": {
+            "frame": {
+                "x": 188,
+                "y": 1,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "NORTH-feta_cheese.png": {
+            "frame": {
+                "x": 188,
+                "y": 18,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "NORTH-hamburger_bun.png": {
+            "frame": {
+                "x": 188,
+                "y": 35,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "NORTH-soy_sauce.png": {
+            "frame": {
+                "x": 188,
+                "y": 52,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "NORTH-frozen_peas.png": {
+            "frame": {
+                "x": 205,
+                "y": 1,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "NORTH-frozen_carrots.png": {
+            "frame": {
+                "x": 205,
+                "y": 18,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "NORTH-soup-olive.png": {
+            "frame": {
+                "x": 205,
+                "y": 35,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "NORTH-soup-feta_cheese.png": {
+            "frame": {
+                "x": 205,
+                "y": 52,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "NORTH-soup-hamburger_bun.png": {
+            "frame": {
+                "x": 222,
+                "y": 1,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "NORTH-soup-soy_sauce.png": {
+            "frame": {
+                "x": 222,
+                "y": 18,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "NORTH-soup-frozen_peas.png": {
+            "frame": {
+                "x": 222,
+                "y": 35,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "NORTH-soup-frozen_carrots.png": {
+            "frame": {
+                "x": 222,
+                "y": 52,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "SOUTH-olive.png": {
+            "frame": {
+                "x": 239,
+                "y": 1,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "SOUTH-feta_cheese.png": {
+            "frame": {
+                "x": 239,
+                "y": 18,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "SOUTH-hamburger_bun.png": {
+            "frame": {
+                "x": 239,
+                "y": 35,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "SOUTH-soy_sauce.png": {
+            "frame": {
+                "x": 239,
+                "y": 52,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "SOUTH-frozen_peas.png": {
+            "frame": {
+                "x": 256,
+                "y": 1,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "SOUTH-frozen_carrots.png": {
+            "frame": {
+                "x": 256,
+                "y": 18,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "SOUTH-soup-olive.png": {
+            "frame": {
+                "x": 256,
+                "y": 35,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "SOUTH-soup-feta_cheese.png": {
+            "frame": {
+                "x": 256,
+                "y": 52,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "SOUTH-soup-hamburger_bun.png": {
+            "frame": {
+                "x": 273,
+                "y": 1,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "SOUTH-soup-soy_sauce.png": {
+            "frame": {
+                "x": 273,
+                "y": 18,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "SOUTH-soup-frozen_peas.png": {
+            "frame": {
+                "x": 273,
+                "y": 35,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "SOUTH-soup-frozen_carrots.png": {
+            "frame": {
+                "x": 273,
+                "y": 52,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "EAST-olive.png": {
+            "frame": {
+                "x": 290,
+                "y": 1,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "EAST-feta_cheese.png": {
+            "frame": {
+                "x": 290,
+                "y": 18,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "EAST-hamburger_bun.png": {
+            "frame": {
+                "x": 290,
+                "y": 35,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "EAST-soy_sauce.png": {
+            "frame": {
+                "x": 290,
+                "y": 52,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "EAST-frozen_peas.png": {
+            "frame": {
+                "x": 307,
+                "y": 1,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "EAST-frozen_carrots.png": {
+            "frame": {
+                "x": 307,
+                "y": 18,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "EAST-soup-olive.png": {
+            "frame": {
+                "x": 307,
+                "y": 35,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "EAST-soup-feta_cheese.png": {
+            "frame": {
+                "x": 307,
+                "y": 52,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "EAST-soup-hamburger_bun.png": {
+            "frame": {
+                "x": 324,
+                "y": 1,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "EAST-soup-soy_sauce.png": {
+            "frame": {
+                "x": 324,
+                "y": 18,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "EAST-soup-frozen_peas.png": {
+            "frame": {
+                "x": 324,
+                "y": 35,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "EAST-soup-frozen_carrots.png": {
+            "frame": {
+                "x": 324,
+                "y": 52,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "WEST-olive.png": {
+            "frame": {
+                "x": 341,
+                "y": 1,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "WEST-feta_cheese.png": {
+            "frame": {
+                "x": 341,
+                "y": 18,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "WEST-hamburger_bun.png": {
+            "frame": {
+                "x": 341,
+                "y": 35,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "WEST-soy_sauce.png": {
+            "frame": {
+                "x": 341,
+                "y": 52,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "WEST-frozen_peas.png": {
+            "frame": {
+                "x": 358,
+                "y": 1,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "WEST-frozen_carrots.png": {
+            "frame": {
+                "x": 358,
+                "y": 18,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "WEST-soup-olive.png": {
+            "frame": {
+                "x": 358,
+                "y": 35,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "WEST-soup-feta_cheese.png": {
+            "frame": {
+                "x": 358,
+                "y": 52,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "WEST-soup-hamburger_bun.png": {
+            "frame": {
+                "x": 375,
+                "y": 1,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "WEST-soup-soy_sauce.png": {
+            "frame": {
+                "x": 375,
+                "y": 18,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "WEST-soup-frozen_peas.png": {
+            "frame": {
+                "x": 375,
+                "y": 35,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
+        },
+        "WEST-soup-frozen_carrots.png": {
+            "frame": {
+                "x": 375,
+                "y": 52,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            }
         }
     },
     "meta": {
@@ -1207,7 +2167,7 @@
         "image": "spritesheet.png",
         "format": "RGBA8888",
         "size": {
-            "w": 187,
+            "w": 391,
             "h": 119
         },
         "scale": "1"
