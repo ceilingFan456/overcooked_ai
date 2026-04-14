@@ -1,0 +1,18 @@
+{
+    "grid":  """XOXTXCXRXPXXX
+                X           X
+                X 1         X
+                X           X
+                V           B
+                X           X
+                X         2 X
+                E           Y
+                X           X
+                XDXZXGXXXXXSX""",
+    "start_bonus_orders": [],
+    "start_all_orders" : [
+        { "ingredients" : ["onion", "tomato", "cucumber", "rice", "olive", "feta_cheese", "hamburger_bun", "soy_sauce", "frozen_peas", "frozen_carrots"]}
+    ],
+    "cook_time": 10,
+    "rew_shaping_params": None
+}
